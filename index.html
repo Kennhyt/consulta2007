@@ -1,1 +1,212 @@
-file:///C:/Users/Kennhyt/Downloads/Consul%20usuariosFMN_2027.html
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrumento de Medición FMN 2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <style>
+        :root {
+            --fmn-primary: #002b49;
+            --fmn-accent: #c09d52;
+            --fmn-bg: linear-gradient(135deg, #0a111e 0%, #002b49 50%, #1e1b4b 100%);
+            --fmn-card: rgba(255, 255, 255, 0.97);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background: var(--fmn-bg); min-height: 100vh; padding: 20px; display: flex; justify-content: center; align-items: center; }
+        
+        .container { width: 100%; max-width: 850px; background: var(--fmn-card); border-radius: 20px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.4); }
+        
+        /* CINTILLO INSTITUCIONAL */
+        .cintillo-fmn { background: #001529; color: #fff; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid var(--fmn-accent); font-size: 0.8rem; font-weight: 700; letter-spacing: 1px; }
+        .cintillo-fmn i { color: var(--fmn-accent); margin-right: 6px; }
+        
+        /* BANNER */
+        .header { background: var(--fmn-primary); color: #fff; padding: 30px; text-align: center; }
+        .header h1 { font-size: 1.6rem; font-weight: 800; margin-top: 10px; }
+        
+        /* FORMULARIO */
+        .form-body { padding: 30px; }
+        .section-header { font-size: 1.1rem; font-weight: 700; color: var(--fmn-primary); border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 18px; display: flex; align-items: center; gap: 8px; }
+        
+        /* CAMPOS AUTOMÁTICOS */
+        .auto-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; background: #f8fafc; border: 2px dashed var(--fmn-accent); padding: 16px; border-radius: 12px; margin-top: 15px; }
+        .auto-field { display: flex; flex-direction: column; }
+        .auto-field label { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; }
+        .auto-field span { font-size: 0.95rem; font-weight: 700; color: var(--fmn-primary); margin-top: 2px; }
+        
+        select, textarea, input[type="text"], input[type="number"] { width: 100%; padding: 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 0.95rem; outline: none; margin-top: 6px; }
+        select:focus, textarea:focus, input:focus { border-color: var(--fmn-accent); }
+        
+        /* PREGUNTA 2 - RATING 1-5 */
+        .rating-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-top: 10px; }
+        .rating-btn { border: 2px solid #e2e8f0; border-radius: 10px; padding: 12px 6px; text-align: center; cursor: pointer; transition: 0.2s; background: #fff; }
+        .rating-btn i { font-size: 1.4rem; color: #94a3b8; display: block; margin-bottom: 4px; }
+        input[type="radio"]:checked + .rating-btn { border-color: var(--fmn-accent); background: #fdfbf7; }
+        input[type="radio"]:checked + .rating-btn i { color: var(--fmn-accent); }
+        
+        .submit-btn { width: 100%; background: var(--fmn-accent); color: #fff; border: none; padding: 18px; font-size: 1.1rem; font-weight: 800; border-radius: 12px; cursor: pointer; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- CINTILLO INSTITUCIONAL -->
+    <div class="cintillo-fmn">
+        <span><i class="fa-solid fa-building-columns"></i> REPÚBLICA BOLIVARIANA DE VENEZUELA</span>
+        <span>FUNDACIÓN MUSEOS NACIONALES 2027</span>
+    </div>
+
+    <header class="header">
+        <i class="fa-solid fa-landmark-dome fa-3x" style="color: var(--fmn-accent);"></i>
+        <h1>MÉTRICA EVALUADA 📊</h1>
+        <p style="font-size:0.9rem; color:#94a3b8; margin-top:5px;">Instrumento de Medición de Satisfacción del Público Visitante</p>
+    </header>
+
+    <form class="form-body" onsubmit="event.preventDefault(); alert('¡Encuesta enviada con éxito!');">
+        
+        <!-- SECCIÓN 1: MUSEO -->
+        <div class="section-header"><i class="fa-solid fa-map-location-dot" style="color:var(--fmn-accent);"></i> ELIJA EL MUSEO</div>
+        <select id="selectMuseo" onchange="autoPoblarDatos()" required>
+            <option value="" disabled selected>-- Seleccione un recinto museal --</option>
+            <option value="MULLA">Museo de los Llanos (MULLA)</option>
+            <option value="MUVA">El Museo de Arte Valencia (MUVA)</option>
+            <option value="GAN">Galería de Arte Nacional (GAN)</option>
+            <option value="MBA">Museo de Bellas Artes (MBA)</option>
+            <option value="MAO">Museo Alejandro Otero (MAO)</option>
+            <option value="MAM">Museo Arturo Michelena (MAM)</option>
+            <option value="MUSARQ">Museo Nacional de Arquitectura (MUSARQ)</option>
+            <option value="MUCI">Museo de Ciencias Naturales (MUCI)</option>
+            <option value="MEDI">Museo Cruz-Diez (MEDI)</option>
+            <option value="MUCOR">Museo de Arte Coro (MUCOR)</option>
+            <option value="MUCA">Museo de la Ciudad de Calabozo (MUCA)</option>
+            <option value="MUBARQ">Museo de Barquisimeto (MUBARQ)</option>
+            <option value="MACCAR">Museo de Arte Contemporáneo Armando Reverón (MACCAR)</option>
+            <option value="MUJABO">Museo Jacobo Borges (MUJABO)</option>
+        </select>
+
+        <!-- DATOS AUTO-COMPLETADOS -->
+        <div class="auto-grid">
+            <div class="auto-field" style="grid-column: 1 / -1;">
+                <label>Ubicación Recinto</label>
+                <span id="autoUbicacion">-- Seleccione un museo arriba --</span>
+            </div>
+            <div class="auto-field">
+                <label>Ciudad</label>
+                <span id="autoCiudad">--</span>
+            </div>
+            <div class="auto-field">
+                <label>Estado</label>
+                <span id="autoEstado">--</span>
+            </div>
+            <div class="auto-field">
+                <label>Región</label>
+                <span id="autoRegion">--</span>
+            </div>
+        </div>
+
+        <!-- PREGUNTA 1 -->
+        <br><br>
+        <div class="section-header"><i class="fa-solid fa-book-open-reader" style="color:var(--fmn-accent);"></i> PREGUNTA 1 (RETENCIÓN HISTÓRICA)</div>
+        <label><strong>¿Qué aprendió hoy sobre nuestra historia? 🖊️</strong></label>
+        <textarea rows="3" placeholder="Escriba aquí su respuesta..." required></textarea>
+
+        <!-- PREGUNTA 2 -->
+        <br><br>
+        <div class="section-header"><i class="fa-solid fa-heart-circle-check" style="color:var(--fmn-accent);"></i> PREGUNTA 2 (APROPIACIÓN PATRIMONIAL)</div>
+        <label><strong>En una escala de 1 a 5, ¿qué tan identificado/a se siente con el patrimonio nacional?</strong></label>
+        
+        <div class="rating-grid">
+            <label>
+                <input type="radio" name="p2" value="1" hidden required>
+                <div class="rating-btn"><i class="fa-solid fa-face-frown"></i><b>1</b><br><small>Nada</small></div>
+            </label>
+            <label>
+                <input type="radio" name="p2" value="2" hidden>
+                <div class="rating-btn"><i class="fa-solid fa-face-meh"></i><b>2</b><br><small>Poco</small></div>
+            </label>
+            <label>
+                <input type="radio" name="p2" value="3" hidden>
+                <div class="rating-btn"><i class="fa-solid fa-face-smile"></i><b>3</b><br><small>Regular</small></div>
+            </label>
+            <label>
+                <input type="radio" name="p2" value="4" hidden>
+                <div class="rating-btn"><i class="fa-solid fa-face-grin-beam"></i><b>4</b><br><small>Bastante</small></div>
+            </label>
+            <label>
+                <input type="radio" name="p2" value="5" hidden>
+                <div class="rating-btn"><i class="fa-solid fa-face-heart"></i><b>5</b><br><small>Muchísimo</small></div>
+            </label>
+        </div>
+
+        <!-- PREGUNTA 3 -->
+        <br><br>
+        <div class="section-header"><i class="fa-solid fa-thumbs-up" style="color:var(--fmn-accent);"></i> PREGUNTA 3 (ÍNDICE I-TLROAC)</div>
+        <label><strong>¿Recomendaría esta actividad a un amigo o familiar? ("Te Lo Recomiendo a Ojo Cerrado")</strong></label>
+        <select required style="margin-top:10px;">
+            <option value="" disabled selected>-- Elija una opción --</option>
+            <option value="1">Definitivamente No</option>
+            <option value="2">Probablemente No</option>
+            <option value="3">No Sé</option>
+            <option value="4">Probablemente Sí</option>
+            <option value="5">Definitivamente Sí</option>
+        </select>
+
+        <!-- DATOS VOLUNTARIOS -->
+        <br><br>
+        <div class="section-header"><i class="fa-solid fa-id-card" style="color:var(--fmn-accent);"></i> DATOS VOLUNTARIOS DEL ENCUESTADO</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+            <div>
+                <label>Edad</label>
+                <input type="number" placeholder="Ej. 25">
+            </div>
+            <div>
+                <label>Género</label>
+                <select>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <div style="grid-column: 1 / -1;">
+                <label>Territorio donde nos visita</label>
+                <input type="text" placeholder="Ej. Caracas, Barquisimeto, etc.">
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn"><i class="fa-solid fa-paper-plane"></i> ENVIAR MI RESPUESTA</button>
+    </form>
+</div>
+
+<script>
+    const museosDB = {
+        "MULLA": { ub: "Avenida 23 de enero, al lado del Parque La Federación", cd: "Barinas", es: "Barinas", re: "Centro-Occidente" },
+        "MUVA": { ub: "Av. Bolívar Norte, cruce con calle Salom, diagonal a heladería Olympia", cd: "Valencia", es: "Carabobo", re: "Centro" },
+        "GAN": { ub: "Caracas, Av. México, entre Bellas Artes y Parque Carabobo", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MBA": { ub: "Caracas, Plaza Los Museos, Parroquia San Agustín", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MAO": { ub: "Caracas, La Rinconada", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MAM": { ub: "Caracas, Esquina de Urapal, Parroquia La Pastora", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MUSARQ": { ub: "Caracas, Av. Bolívar, c/Av. Sur 9", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MUCI": { ub: "Caracas, Plaza Los Museos, Parroquia San Agustín", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MEDI": { ub: "Caracas, Paseo Vargas de la avenida Bolívar", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MUCOR": { ub: "Balcón Bolívar, paseo Talavera con calle Hernández", cd: "Coro", es: "Falcón", re: "Occidente" },
+        "MUCA": { ub: "Calle 5 entre carreras 9 y 10, frente a la Plaza Páez", cd: "Calabozo", es: "Guárico", re: "Los Llanos" },
+        "MUBARQ": { ub: "Carrera 15 con calles 25 y 26", cd: "Barquisimeto", es: "Lara", re: "Centro-Occidente" },
+        "MACCAR": { ub: "Caracas, Parque Central", cd: "Caracas", es: "Distrito Capital", re: "Capital" },
+        "MUJABO": { ub: "Avenida Sucre, dentro del Parque Alí Primera (Catia)", cd: "Caracas", es: "Distrito Capital", re: "Capital" }
+    };
+
+    function autoPoblarDatos() {
+        const sel = document.getElementById("selectMuseo").value;
+        const data = museosDB[sel];
+        if(data) {
+            document.getElementById("autoUbicacion").innerText = data.ub;
+            document.getElementById("autoCiudad").innerText = data.cd;
+            document.getElementById("autoEstado").innerText = data.es;
+            document.getElementById("autoRegion").innerText = data.re;
+        }
+    }
+</script>
+</body>
+</html
